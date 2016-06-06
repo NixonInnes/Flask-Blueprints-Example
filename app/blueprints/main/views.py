@@ -1,8 +1,7 @@
 from flask import render_template, redirect, url_for
 from . import main
 from .forms import ExampleForm
-from ... import db
-from ...models import Example
+from ...models import db, Example
 
 
 @main.route('/', methods=['GET'])
