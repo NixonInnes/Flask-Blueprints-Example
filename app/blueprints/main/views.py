@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, current_app
 from . import main
 from .forms import ExampleForm
 from ...models import db, Example
@@ -6,6 +6,7 @@ from ...models import db, Example
 
 @main.route('/', methods=['GET'])
 def index():
+    current_app.logger.debug('Test log')
     return render_template('main/index.html')
 
 

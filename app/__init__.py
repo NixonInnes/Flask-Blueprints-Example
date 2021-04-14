@@ -9,7 +9,11 @@ bootstrap = Bootstrap()
 
 def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+
+    Config = config[config_name]
+    Config.init_app(app)
+
+    app.config.from_object(Config)
 
     bootstrap.init_app(app)
 
@@ -17,8 +21,12 @@ def create_app(config_name):
     db.init_app(app)
 
     if not app.debug and not app.testing:
-        from flask.ext.sslify import SSLify
-        sslify = SSLify(app)
+        try:
+            from flask.ext.sslify import SSLify
+            sslify = SSLify(app)
+            app.logger.info('SSL enabled')
+        except:
+            pass
 
     from app.blueprints.main import main as main_blueprint
     app.register_blueprint(main_blueprint)

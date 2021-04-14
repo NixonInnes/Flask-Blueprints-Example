@@ -1,4 +1,5 @@
 *.sqlite
 __pycache__/
 migrations/
+logs/
 
