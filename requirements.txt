@@ -1,6 +1,5 @@
 Flask
 Flask-Bootstrap
 Flask-Migrate
-Flask-Script
 Flask-SQLAlchemy
 Flask-WTF

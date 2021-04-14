@@ -1,23 +1,20 @@
+import os
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 
 from config import config
 
 bootstrap = Bootstrap()
+db = SQLAlchemy()
+config = config[os.getenv('APP_CONFIG', 'default')]
 
 
-
-def create_app(config_name):
+def create_app():
     app = Flask(__name__)
 
-    Config = config[config_name]
-    Config.init_app(app)
-
-    app.config.from_object(Config)
-
+    config.init_app(app)
     bootstrap.init_app(app)
-
-    from .models import db
     db.init_app(app)
 
     if not app.debug and not app.testing:

@@ -54,6 +54,7 @@ class Config(object):
         log_handler.setFormatter(log_formatter)
         app.logger.setLevel(cls.LOG_LEVEL)
         app.logger.addHandler(log_handler)
+        app.config.from_object(cls)
 
 
 class DevConfig(Config):
